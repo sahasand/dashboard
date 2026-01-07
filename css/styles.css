@@ -394,7 +394,7 @@ main {
    ========================================== */
 .chart-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--spacing-lg);
   margin-bottom: var(--spacing-xl);
 }
@@ -1056,13 +1056,24 @@ input[type="file"] {
   }
 
   .study-tabs {
-    padding: var(--spacing-md) var(--spacing-md) 0;
-    flex-wrap: wrap;
+    padding: var(--spacing-sm) 0;
+    margin: 0 var(--spacing-sm);
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: var(--spacing-xs);
+  }
+
+  .study-tabs::-webkit-scrollbar {
+    display: none;
   }
 
   .tab-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: var(--font-size-sm);
+    flex-shrink: 0;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.75rem;
+    white-space: nowrap;
   }
 
   .kpi-grid,
@@ -1102,16 +1113,54 @@ input[type="file"] {
 }
 
 @media (max-width: 480px) {
+  /* Chart grid - single column on mobile */
+  .chart-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+
+  /* Reduce chart container height on mobile */
+  .chart-container {
+    min-height: 280px;
+  }
+
   .chart-card {
     padding: var(--spacing-md);
   }
 
+  /* KPI cards - 2 column grid on mobile */
+  .kpi-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+  }
+
   .kpi-card {
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
+  }
+
+  .kpi-value {
+    font-size: 1.5rem;
+  }
+
+  .kpi-label {
+    font-size: 0.7rem;
   }
 
   .upload-section {
     padding: var(--spacing-lg);
+  }
+
+  /* General container adjustments */
+  .dashboard-container {
+    padding: var(--spacing-sm);
+  }
+
+  .study-content {
+    padding: var(--spacing-sm);
+  }
+
+  .section-title {
+    font-size: 1.25rem;
   }
 }
 
@@ -1777,6 +1826,52 @@ input[type="file"] {
 
     .footer-tagline p {
         font-size: 20px;
+    }
+}
+
+/* Phone-specific styles for home page */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 80px 20px 60px;
+    }
+
+    .hero-title {
+        font-size: 40px;
+        letter-spacing: -1px;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    .use-cases {
+        gap: 16px;
+        padding: 40px 16px;
+    }
+
+    .use-case-card {
+        padding: var(--spacing-md);
+    }
+
+    .stats-section {
+        gap: 40px;
+        padding: 60px 20px;
+    }
+
+    .stat-number {
+        font-size: 48px;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .footer-tagline {
+        padding: 40px 20px;
+    }
+
+    .footer-tagline p {
+        font-size: 16px;
     }
 }
 
